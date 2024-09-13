@@ -19,10 +19,10 @@ import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import CheckAuth from "./components/common/Check-Auth";
 import UnauthPage from "./pages/unauth-page";
+import { useSelector } from "react-redux";
 
 const App = () => {
-  const isAuthenticated = false;
-  const user = null;
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
