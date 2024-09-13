@@ -21,8 +21,8 @@ import CheckAuth from "./components/common/Check-Auth";
 import UnauthPage from "./pages/unauth-page";
 
 const App = () => {
-  const isAuthenticated = true;
-  const user = { name: "manoj", role: "user" };
+  const isAuthenticated = false;
+  const user = null;
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
