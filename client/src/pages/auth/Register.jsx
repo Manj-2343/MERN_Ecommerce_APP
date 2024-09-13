@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import CommonForm from "@/components/common/Form";
 import { registerFormControls } from "@/config";
 import { useToast } from "@/components/ui/use-toast";
+import { registerUser } from "@/store/auth-slice";
 
 let initialState = { userName: "", email: "", password: "" };
 
@@ -18,19 +19,19 @@ const AuthRegister = () => {
 
   function onSubmit(event) {
     event.preventDefault();
-    // dispatch(registerUser(formData)).then((data) => {
-    //   if (data?.payload?.success) {
-    //     toast({
-    //       title: data?.payload?.message,
-    //     });
-    //     navigate("/auth/login");
-    //   } else {
-    //     toast({
-    //       title: data?.payload?.message,
-    //       variant: "destructive",
-    //     });
-    //   }
-    // });
+    dispatch(registerUser(formData)).then((data) => {
+      if (data?.payload?.success) {
+        toast({
+          title: data?.payload?.message,
+        });
+        navigate("/auth/login");
+      } else {
+        toast({
+          title: data?.payload?.message,
+          variant: "destructive",
+        });
+      }
+    });
   }
   return (
     <div className="mx-auto w-full max-w-md space-y-6">
