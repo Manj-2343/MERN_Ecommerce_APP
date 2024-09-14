@@ -28,7 +28,8 @@ const initialFormData = {
   brand: "",
   price: "",
   salePrice: "",
-  totalPrice: "",
+  totalStock: "",
+  averageReview: 0,
 };
 
 function AdminProducts() {
@@ -39,6 +40,7 @@ function AdminProducts() {
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageLoadingState, setImageLoadingState] = useState(false);
   const [currentEditedId, setCurrentEditedId] = useState(null);
+
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
   const { toast } = useToast();
@@ -79,6 +81,7 @@ function AdminProducts() {
           }
         });
   }
+
   function handleDelete(getCurrentProductId) {
     dispatch(deleteProduct(getCurrentProductId)).then((data) => {
       if (data?.payload?.success) {
@@ -99,6 +102,7 @@ function AdminProducts() {
   }, [dispatch]);
 
   console.log(formData, "productList");
+
   return (
     <Fragment>
       <div className="mb-5 w-full flex justify-end">
@@ -108,8 +112,9 @@ function AdminProducts() {
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
-          ? productList.map((productItem) => (
+          ? productList.map((productItem, i) => (
               <AdminProductTile
+                key={i}
                 setFormData={setFormData}
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 setCurrentEditedId={setCurrentEditedId}
@@ -157,5 +162,4 @@ function AdminProducts() {
     </Fragment>
   );
 }
-
 export default AdminProducts;
