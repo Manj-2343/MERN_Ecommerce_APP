@@ -23,6 +23,7 @@ import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
+import { motion } from "framer-motion";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -51,14 +52,21 @@ function MenuItems() {
 
   return (
     <nav className="flex flex-col mb-3 lg:mb-0 lg:items-center gap-6 lg:flex-row">
-      {shoppingViewHeaderMenuItems.map((menuItem) => (
-        <Label
-          onClick={() => handleNavigate(menuItem)}
-          className="text-sm font-medium cursor-pointer"
-          key={menuItem.id}
+      {shoppingViewHeaderMenuItems.map((menuItem, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: index * 0.1 }}
         >
-          {menuItem.label}
-        </Label>
+          <Label
+            onClick={() => handleNavigate(menuItem)}
+            className="text-sm font-semibold cursor-pointer hover:text-primary transition-colors"
+            key={menuItem.id}
+          >
+            {menuItem.label}
+          </Label>
+        </motion.div>
       ))}
     </nav>
   );
@@ -88,10 +96,10 @@ function HeaderRightContent() {
           onClick={() => setOpenCartSheet(true)}
           variant="outline"
           size="icon"
-          className="relative"
+          className="relative group transition-all duration-300 hover:bg-primary hover:text-white"
         >
-          <ShoppingCart className="w-6 h-6" />
-          <span className="absolute top-[-5px] right-[2px] font-bold text-sm">
+          <ShoppingCart className="w-6 h-6 transition-transform group-hover:scale-110" />
+          <span className="absolute -top-2 -right-2 bg-primary text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold transition-all duration-300 group-hover:bg-white group-hover:text-primary">
             {cartItems?.items?.length || 0}
           </span>
           <span className="sr-only">User cart</span>
@@ -108,21 +116,32 @@ function HeaderRightContent() {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Avatar className="bg-black">
-            <AvatarFallback className="bg-black text-white font-extrabold">
+          <Avatar className="bg-primary cursor-pointer transition-transform duration-300 hover:scale-110">
+            <AvatarFallback className="bg-primary text-white font-extrabold">
               {user?.userName[0].toUpperCase()}
             </AvatarFallback>
           </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent side="right" className="w-56">
-          <DropdownMenuLabel>Logged in as {user?.userName}</DropdownMenuLabel>
+        <DropdownMenuContent
+          side="right"
+          className="w-56 animate-in slide-in-from-top-1 duration-300"
+        >
+          <DropdownMenuLabel className="font-semibold text-primary">
+            Logged in as {user?.userName}
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={() => navigate("/shop/account")}>
+          <DropdownMenuItem
+            onClick={() => navigate("/shop/account")}
+            className="cursor-pointer transition-colors hover:bg-primary/10"
+          >
             <UserCog className="mr-2 h-4 w-4" />
             Account
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem onClick={handleLogout}>
+          <DropdownMenuItem
+            onClick={handleLogout}
+            className="cursor-pointer transition-colors hover:bg-red-100 text-red-600"
+          >
             <LogOut className="mr-2 h-4 w-4" />
             Logout
           </DropdownMenuItem>
@@ -134,32 +153,52 @@ function HeaderRightContent() {
 
 function ShoppingHeader() {
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background">
-      <div className="flex h-16 items-center justify-between px-4 md:px-6">
-        <Link to="/shop/home" className="flex items-center gap-2">
-          <HousePlug className="h-6 w-6" />
-          <span className="font-bold">Ecommerce</span>
-        </Link>
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="outline" size="icon" className="lg:hidden">
-              <Menu className="h-6 w-6" />
-              <span className="sr-only">Toggle header menu</span>
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="left" className="w-full max-w-xs">
+    <header
+      className={`sticky top-0 z-40 w-full border-b backdrop-blur-sm transition-all duration-300 ${
+        isScrolled ? "bg-primary text-white" : "bg-background text-primary"
+      }`}
+    >
+      <div className="container mx-auto">
+        <div className="flex h-16 items-center justify-between px-4 md:px-6">
+          <Link
+            to="/shop/home"
+            className="flex items-center gap-2 transition-transform duration-300 hover:scale-105"
+          >
+            <HousePlug className="h-6 w-6 text-primary" />
+            <span className="font-bold text-lg text-primary">Ecommerce</span>
+          </Link>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="lg:hidden hover:bg-primary/10"
+              >
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Toggle header menu</span>
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-full max-w-xs">
+              <MenuItems />
+              <HeaderRightContent />
+            </SheetContent>
+          </Sheet>
+          <div className="hidden lg:block">
             <MenuItems />
+          </div>
+          <div className="hidden lg:block">
             <HeaderRightContent />
-          </SheetContent>
-        </Sheet>
-        <div className="hidden lg:block">
-          <MenuItems />
-        </div>
-
-        <div className="hidden lg:block">
-          <HeaderRightContent />
+          </div>
         </div>
       </div>
     </header>

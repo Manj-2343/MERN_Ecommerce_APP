@@ -9,32 +9,16 @@ export default function AdminProductTile({
   handleDelete,
 }) {
   return (
-    <Card className="w-full max-w-sm mx-auto">
-      <div>
-        <div className="relative">
-          <img
-            src={product?.image}
-            alt={product?.title}
-            className="w-full h-[300px] object-cover rounded-t-lg"
-          />
-        </div>
-        <CardContent>
-          <h2 className="text-xl font-bold mb-2 mt-2">{product?.title}</h2>
-          <div className="flex justify-between items-center mb-2">
-            <span
-              className={`${
-                product?.salePrice > 0 ? "line-through" : ""
-              } text-lg font-semibold text-primary`}
-            >
-              ${product?.price}
-            </span>
-            {product?.salePrice > 0 ? (
-              <span className="text-lg font-bold">${product?.salePrice}</span>
-            ) : null}
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-between items-center">
+    <Card className="w-full max-w-sm mx-auto overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105">
+      <div className="relative group">
+        <img
+          src={product?.image}
+          alt={product?.title}
+          className="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button
+            className="bg-white text-black hover:bg-slate-600 hover:text-white transition-colors duration-300"
             onClick={() => {
               setOpenCreateProductsDialog(true);
               setCurrentEditedId(product?._id);
@@ -43,9 +27,38 @@ export default function AdminProductTile({
           >
             Edit
           </Button>
-          <Button onClick={() => handleDelete(product?._id)}>Delete</Button>
-        </CardFooter>
+        </div>
       </div>
+      <CardContent className="p-4">
+        <h2 className="text-xl font-bold mb-2 mt-2 truncate">
+          {product?.title}
+        </h2>
+        <div className="flex justify-between items-center mb-2">
+          <span
+            className={`${
+              product?.salePrice > 0
+                ? "line-through text-gray-500"
+                : "text-primary"
+            } text-lg font-semibold`}
+          >
+            ${product?.price}
+          </span>
+          {product?.salePrice > 0 && (
+            <span className="text-lg font-bold text-green-600">
+              ${product?.salePrice}
+            </span>
+          )}
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-end items-center p-4 bg-gray-50">
+        <Button
+          variant="outline"
+          className="text-red-500 hover:bg-red-100 hover:text-red-700 transition-colors duration-300"
+          onClick={() => handleDelete(product?._id)}
+        >
+          Delete
+        </Button>
+      </CardFooter>
     </Card>
   );
 }
