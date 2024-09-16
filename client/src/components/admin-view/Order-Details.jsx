@@ -1,11 +1,46 @@
-import { useSelector } from "react-redux";
-import { Badge } from "../ui/badge";
+import { useState } from "react";
+import CommonForm from "../common/form";
 import { DialogContent } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
+import { Badge } from "../ui/badge";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllOrdersForAdmin,
+  getOrderDetailsForAdmin,
+  updateOrderStatus,
+} from "@/store/admin/order-slice";
+import { useToast } from "../ui/use-toast";
 
-function ShoppingOrderDetailsView({ orderDetails }) {
+const initialFormData = {
+  status: "",
+};
+
+function AdminOrderDetailsView({ orderDetails }) {
+  const [formData, setFormData] = useState(initialFormData);
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const { toast } = useToast();
+
+  console.log(orderDetails, "orderDetailsorderDetails");
+
+  function handleUpdateStatus(event) {
+    event.preventDefault();
+    const { status } = formData;
+
+    dispatch(
+      updateOrderStatus({ id: orderDetails?._id, orderStatus: status })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(getOrderDetailsForAdmin(orderDetails?._id));
+        dispatch(getAllOrdersForAdmin());
+        setFormData(initialFormData);
+        toast({
+          title: data?.payload?.message,
+        });
+      }
+    });
+  }
 
   return (
     <DialogContent className="sm:max-w-[600px]">
@@ -78,9 +113,32 @@ function ShoppingOrderDetailsView({ orderDetails }) {
             </div>
           </div>
         </div>
+
+        <div>
+          <CommonForm
+            formControls={[
+              {
+                label: "Order Status",
+                name: "status",
+                componentType: "select",
+                options: [
+                  { id: "pending", label: "Pending" },
+                  { id: "inProcess", label: "In Process" },
+                  { id: "inShipping", label: "In Shipping" },
+                  { id: "delivered", label: "Delivered" },
+                  { id: "rejected", label: "Rejected" },
+                ],
+              },
+            ]}
+            formData={formData}
+            setFormData={setFormData}
+            buttonText={"Update Order Status"}
+            onSubmit={handleUpdateStatus}
+          />
+        </div>
       </div>
     </DialogContent>
   );
 }
 
-export default ShoppingOrderDetailsView;
+export default AdminOrderDetailsView;
