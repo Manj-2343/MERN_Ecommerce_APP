@@ -72,7 +72,7 @@ function HeaderRightContent() {
   const dispatch = useDispatch();
 
   function handleLogout() {
-    // dispatch(logoutUser());
+    dispatch(logoutUser());
   }
 
   // useEffect(() => {
