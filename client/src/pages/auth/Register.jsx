@@ -15,8 +15,6 @@ const AuthRegister = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  console.log(formData);
-
   function onSubmit(event) {
     event.preventDefault();
     dispatch(registerUser(formData)).then((data) => {

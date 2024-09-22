@@ -116,8 +116,6 @@ function ShoppingHome() {
     );
   }, [dispatch]);
 
-  console.log(productList, "productList");
-
   useEffect(() => {
     dispatch(getFeatureImages());
   }, [dispatch]);
@@ -226,9 +224,9 @@ function ShoppingHome() {
             {productList &&
               productList
                 .slice(0, displayedProducts)
-                .map((productItem) => (
+                .map((productItem, i) => (
                   <ShoppingProductTile
-                    key={productItem.id}
+                    key={i}
                     handleGetProductDetails={handleGetProductDetails}
                     product={productItem}
                     handleAddtoCart={handleAddtoCart}
