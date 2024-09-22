@@ -163,22 +163,27 @@ function ShoppingHome() {
           <ChevronRightIcon className="w-4 h-4" />
         </Button>
       </div>
-      <section className="py-12 bg-gray-50">
+      <section className="py-16 bg-gradient-to-r from-gray-50 to-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-left mb-8">
-            Shop by category
+          <h2 className="text-4xl font-bold text-left mb-12 text-gray-800 relative ">
+            Shop by Category
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {categoriesWithIcon.map((categoryItem) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {categoriesWithIcon.map((categoryItem, index) => (
               <Card
+                key={index}
                 onClick={() =>
                   handleNavigateToListingPage(categoryItem, "category")
                 }
-                className="cursor-pointer hover:shadow-lg transition-shadow"
+                className="cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-white rounded-lg overflow-hidden"
               >
-                <CardContent className="flex flex-col items-center justify-center p-6">
-                  <categoryItem.icon className="w-12 h-12 mb-4 text-primary" />
-                  <span className="font-bold">{categoryItem.label}</span>
+                <CardContent className="flex flex-col items-center justify-center p-8">
+                  <div className="mb-6 transform transition-transform duration-300 hover:scale-110">
+                    <categoryItem.icon className="w-16 h-16 text-primary" />
+                  </div>
+                  <span className="font-bold text-lg text-gray-800">
+                    {categoryItem.label}
+                  </span>
                 </CardContent>
               </Card>
             ))}
@@ -186,19 +191,25 @@ function ShoppingHome() {
         </div>
       </section>
 
-      <section className="py-12 bg-gray-50">
+      <section className="py-16 bg-gradient-to-r from-gray-100 to-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-left mb-8">Shop by Brand</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <h2 className="text-4xl font-bold text-left mb-12 text-gray-800 relative ">
+            Shop by Brand
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {brandsWithIcon.map((brandItem, i) => (
               <Card
                 key={i}
                 onClick={() => handleNavigateToListingPage(brandItem, "brand")}
-                className="cursor-pointer hover:shadow-lg transition-shadow"
+                className="cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-2 bg-white rounded-lg "
               >
-                <CardContent className="flex flex-col items-center justify-center p-6">
-                  <brandItem.icon className="w-12 h-12 mb-4 text-primary" />
-                  <span className="font-bold">{brandItem.label}</span>
+                <CardContent className="flex flex-col items-center justify-center p-8">
+                  <div className="mb-6 transform transition-transform duration-300 hover:scale-110">
+                    <brandItem.icon className="w-16 h-16 text-primary" />
+                  </div>
+                  <span className="font-bold text-lg text-gray-800">
+                    {brandItem.label}
+                  </span>
                 </CardContent>
               </Card>
             ))}
@@ -230,7 +241,7 @@ function ShoppingHome() {
                 onClick={() =>
                   setDisplayedProducts((prevCount) => prevCount + 8)
                 }
-                className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
+                className="bg-gradient-to-l from-slate-800 to-purple-900 hover:bg-gradient-to-r from-slate-800 to-purple-900  transition-colors duration-300 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center"
               >
                 <span className="mr-2">Load More</span>
                 <ChevronDownIcon className="w-5 h-5 animate-bounce" />

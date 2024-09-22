@@ -18,7 +18,7 @@ export default function AdminProductTile({
         />
         <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <Button
-            className="bg-white text-black hover:bg-slate-600 hover:text-white transition-colors duration-300"
+            className="bg-gradient-to-l from-slate-800 to-purple-900 hover:bg-gradient-to-r from-slate-800 to-purple-900 text-white transition-colors duration-300"
             onClick={() => {
               setOpenCreateProductsDialog(true);
               setCurrentEditedId(product?._id);
@@ -53,7 +53,7 @@ export default function AdminProductTile({
       <CardFooter className="flex justify-end items-center p-4 bg-gray-50">
         <Button
           variant="outline"
-          className="text-red-500 hover:bg-red-100 hover:text-red-700 transition-colors duration-300"
+          className="bg-gradient-to-l from-orange-600 to-red-600 hover:bg-gradient-to-r from-orange-600 to-red-600 text-white transition-colors duration-300"
           onClick={() => handleDelete(product?._id)}
         >
           Delete

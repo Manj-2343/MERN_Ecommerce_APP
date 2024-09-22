@@ -106,96 +106,110 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
 
   return (
     <Dialog open={open} onOpenChange={handleDialogClose}>
-      <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
-        <div className="relative overflow-hidden rounded-lg">
+      <DialogContent className="max-w-[90vw] sm:max-w-[70vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw] bg-gradient-to-br from-gray-50 via-white to-purple-50 rounded-2xl shadow-2xl">
+        <div className="relative overflow-hidden rounded-2xl shadow-lg group max-w-md mx-auto">
           <img
             src={productDetails?.image}
             alt={productDetails?.title}
-            width={600}
-            height={600}
-            className="aspect-square w-full object-cover"
+            width={300}
+            height={300}
+            className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
-        <div className="">
+        <div className="flex flex-col justify-between space-y-8">
           <div>
-            <h1 className="text-3xl font-extrabold">{productDetails?.title}</h1>
-            <p className="text-muted-foreground text-2xl mb-5 mt-4">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-800 mb-4 leading-tight">
+              {productDetails?.title}
+            </h1>
+            <p className="text-gray-600 text-lg sm:text-xl mb-6 leading-relaxed">
               {productDetails?.description}
             </p>
           </div>
-          <div className="flex items-center justify-between">
-            <p
-              className={`text-3xl font-bold text-primary ${
-                productDetails?.salePrice > 0 ? "line-through" : ""
-              }`}
-            >
-              ${productDetails?.price}
-            </p>
-            {productDetails?.salePrice > 0 ? (
-              <p className="text-2xl font-bold text-muted-foreground">
-                ${productDetails?.salePrice}
-              </p>
-            ) : null}
-          </div>
-          <div className="flex items-center gap-2 mt-2">
-            <div className="flex items-center gap-0.5">
-              <StarRatingComponent rating={averageReview} />
-            </div>
-            <span className="text-muted-foreground">
-              ({averageReview.toFixed(2)})
-            </span>
-          </div>
-          <div className="mt-5 mb-5">
-            {productDetails?.totalStock === 0 ? (
-              <Button className="w-full opacity-60 cursor-not-allowed">
-                Out of Stock
-              </Button>
-            ) : (
-              <Button
-                className="w-full"
-                onClick={() =>
-                  handleAddToCart(
-                    productDetails?._id,
-                    productDetails?.totalStock
-                  )
-                }
+          <div className="space-y-8">
+            <div className="flex items-center justify-between">
+              <p
+                className={`text-4xl font-bold ${
+                  productDetails?.salePrice > 0
+                    ? "text-gray-400 line-through"
+                    : "text-slate-800"
+                }`}
               >
-                Add to Cart
-              </Button>
-            )}
+                ${productDetails?.price}
+              </p>
+              {productDetails?.salePrice > 0 && (
+                <p className="text-3xl font-bold text-green-600">
+                  ${productDetails?.salePrice}
+                </p>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-0.5">
+                <StarRatingComponent rating={averageReview} />
+              </div>
+              <span className="text-gray-500 text-lg">
+                ({averageReview.toFixed(2)})
+              </span>
+            </div>
+            <div>
+              {productDetails?.totalStock === 0 ? (
+                <Button className="w-full opacity-80 cursor-not-allowed bg-red-500 hover:bg-red-600 text-white font-bold py-4 px-8 rounded-xl transition duration-300 text-lg shadow-lg">
+                  Out of Stock
+                </Button>
+              ) : (
+                <Button
+                  className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-4 px-8 rounded-xl transition duration-300 text-lg shadow-lg transform hover:scale-105"
+                  onClick={() =>
+                    handleAddToCart(
+                      productDetails?._id,
+                      productDetails?.totalStock
+                    )
+                  }
+                >
+                  Add to Cart
+                </Button>
+              )}
+            </div>
           </div>
-          <Separator />
-          <div className="max-h-[300px] overflow-auto">
-            <h2 className="text-xl font-bold mb-4">Reviews</h2>
-            <div className="grid gap-6">
+          <Separator className="my-10" />
+          <div className="max-h-[450px] overflow-auto pr-4 custom-scrollbar">
+            <h2 className="text-3xl font-bold mb-8 text-gray-800">Reviews</h2>
+            <div className="grid gap-8">
               {reviews && reviews.length > 0 ? (
                 reviews.map((reviewItem) => (
-                  <div className="flex gap-4">
-                    <Avatar className="w-10 h-10 border">
-                      <AvatarFallback>
+                  <div
+                    key={reviewItem.id}
+                    className="flex gap-6 bg-white p-6 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg"
+                  >
+                    <Avatar className="w-16 h-16 border-3 border-purple-200">
+                      <AvatarFallback className="bg-gradient-to-br from-purple-400 to-indigo-400 text-white text-xl font-bold">
                         {reviewItem?.userName[0].toUpperCase()}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="grid gap-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-bold">{reviewItem?.userName}</h3>
+                    <div className="grid gap-3">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-bold text-xl text-gray-800">
+                          {reviewItem?.userName}
+                        </h3>
                       </div>
                       <div className="flex items-center gap-0.5">
                         <StarRatingComponent rating={reviewItem?.reviewValue} />
                       </div>
-                      <p className="text-muted-foreground">
+                      <p className="text-gray-600 text-lg leading-relaxed">
                         {reviewItem.reviewMessage}
                       </p>
                     </div>
                   </div>
                 ))
               ) : (
-                <h1>No Reviews</h1>
+                <h1 className="text-gray-500 italic text-xl">No Reviews Yet</h1>
               )}
             </div>
-            <div className="mt-10 flex-col flex gap-2">
-              <Label>Write a review</Label>
-              <div className="flex gap-1">
+            <div className="mt-12 flex-col flex gap-6">
+              <Label className="text-2xl font-semibold text-gray-800">
+                Write a review
+              </Label>
+              <div className="flex gap-3">
                 <StarRatingComponent
                   rating={rating}
                   handleRatingChange={handleRatingChange}
@@ -205,13 +219,15 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
                 name="reviewMsg"
                 value={reviewMsg}
                 onChange={(event) => setReviewMsg(event.target.value)}
-                placeholder="Write a review..."
+                placeholder="Share your thoughts..."
+                className="py-3 px-5 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:ring focus:ring-purple-200 text-lg"
               />
               <Button
                 onClick={handleAddReview}
                 disabled={reviewMsg.trim() === ""}
+                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold py-3 px-6 rounded-xl transition duration-300 disabled:opacity-50 text-lg shadow-md transform hover:scale-105"
               >
-                Submit
+                Submit Review
               </Button>
             </div>
           </div>

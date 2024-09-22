@@ -85,7 +85,7 @@ function UserCartItemsContent({ cartItem }) {
         <div className="flex items-center gap-2 mt-1 bg-gray-100 rounded-full p-1 w-fit">
           <Button
             variant="ghost"
-            className="h-8 w-8 rounded-full hover:bg-primary hover:text-white transition-colors duration-300"
+            className="h-8 w-8 rounded-full bg-gradient-to-l from-slate-800 to-purple-900 hover:bg-gradient-to-r from-slate-800 to-purple-900 text-white transition-colors duration-300"
             size="icon"
             disabled={cartItem?.quantity === 1}
             onClick={() => handleUpdateQuantity(cartItem, "minus")}
@@ -98,7 +98,7 @@ function UserCartItemsContent({ cartItem }) {
           </span>
           <Button
             variant="ghost"
-            className="h-8 w-8 rounded-full hover:bg-primary hover:text-white transition-colors duration-300"
+            className="h-8 w-8 rounded-full bg-gradient-to-l from-slate-800 to-purple-900 hover:bg-gradient-to-r from-slate-800 to-purple-900 text-white hover:text-white transition-colors duration-300"
             size="icon"
             onClick={() => handleUpdateQuantity(cartItem, "plus")}
           >

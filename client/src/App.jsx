@@ -22,6 +22,7 @@ import UnauthPage from "./pages/unauth-page";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "./components/ui/skeleton";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   const { isAuthenticated, user, isLoading } = useSelector(
@@ -29,6 +30,14 @@ const App = () => {
   );
   const dispatch = useDispatch();
 
+  const shouldShowFooter = () => {
+    if (!isAuthenticated) return false;
+    if (user?.role === "admin" && location.pathname.includes("shop"))
+      return false;
+    if (user?.role !== "admin" && location.pathname.includes("admin"))
+      return false;
+    return true;
+  };
   useEffect(() => {
     dispatch(checkAuth());
   }, [dispatch]);
@@ -37,6 +46,15 @@ const App = () => {
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <Routes>
+        <Route
+          path="/"
+          element={
+            <CheckAuth
+              isAuthenticated={isAuthenticated}
+              user={user}
+            ></CheckAuth>
+          }
+        />
         <Route
           path="/auth"
           element={
@@ -80,6 +98,10 @@ const App = () => {
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+        {/* Your other components and routes */}
+        {shouldShowFooter() && <Footer />}
+      </CheckAuth>
     </div>
   );
 };

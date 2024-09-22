@@ -54,7 +54,7 @@ function UserCartWrapper({ cartItems, setOpenCartSheet }) {
           navigate("/shop/checkout");
           setOpenCartSheet(false);
         }}
-        className="w-full mt-6 bg-primary hover:bg-primary-dark transition-colors duration-300"
+        className="w-full mt-6 bg-gradient-to-l from-slate-800 to-purple-900 hover:bg-gradient-to-r from-slate-800 to-purple-900 text-white transition-colors duration-300"
       >
         <ShoppingBag className="mr-2 h-5 w-5" />
         Checkout

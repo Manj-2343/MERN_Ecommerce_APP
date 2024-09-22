@@ -72,7 +72,7 @@ function ShoppingProductTile({
         ) : (
           <Button
             onClick={() => handleAddtoCart(product?._id, product?.totalStock)}
-            className="w-full bg-slate-900 hover:bg-slate-700 text-white transition-colors duration-300 flex items-center justify-center"
+            className="w-full bg-gradient-to-l from-slate-800 to-purple-900 hover:bg-gradient-to-r from-slate-800 to-purple-900 text-white transition-colors duration-300 flex items-center justify-center"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
