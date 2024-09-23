@@ -53,7 +53,7 @@ export default function AdminProductTile({
       <CardFooter className="flex justify-end items-center p-4 bg-gray-50">
         <Button
           variant="outline"
-          className="bg-gradient-to-l from-orange-600 to-red-600 hover:bg-gradient-to-r from-orange-600 to-red-600 text-white transition-colors duration-300"
+          className="bg-gradient-to-l hover:text-white  from-orange-600 to-red-600 hover:bg-gradient-to-r from-orange-600 to-red-600 text-white transition-colors duration-300"
           onClick={() => handleDelete(product?._id)}
         >
           Delete
