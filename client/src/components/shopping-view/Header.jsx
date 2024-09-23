@@ -19,12 +19,13 @@ import {
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { logoutUser } from "@/store/auth-slice";
-import UserCartWrapper from "./Cart-Wrapper";
+
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
 import { motion } from "framer-motion";
 import NovelleEmporiumLogo from "./Logo";
+import UserCartWrapper from "./Cart-Wrapper";
 
 function MenuItems() {
   const navigate = useNavigate();
