@@ -16,13 +16,13 @@ const shopSearchRouter = require("./routes/shop/search-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
+require("dotenv").config();
+
 //create a database connection -> u can also
 //create a separate file for this and then import/use that file here
 
 mongoose
-  .connect(
-    "mongodb+srv://biswalmanoj603:gGNxzXwKsWD62yYL@cluster0.zpuyh.mongodb.net/"
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((error) => console.log(error));
 

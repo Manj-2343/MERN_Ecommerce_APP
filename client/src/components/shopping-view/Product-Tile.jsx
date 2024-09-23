@@ -36,7 +36,9 @@ function ShoppingProductTile({
         </div>
         <CardContent className="p-4 bg-gradient-to-b from-gray-50 to-white">
           <h2 className="text-xl font-bold mb-2 text-gray-800">
-            {product?.title}
+            {product.title.length > 17
+              ? `${product.title.slice(0, 17)}...`
+              : product.title}
           </h2>
           <div className="flex justify-between items-center mb-2">
             <span className="text-[16px] text-gray-600">
