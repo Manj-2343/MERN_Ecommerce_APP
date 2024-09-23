@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
-import UserCartItemsContent from "./cart-items-content";
+import UserCartItemsContent from "./Cart-Items-Content";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { ShoppingBag } from "lucide-react";
