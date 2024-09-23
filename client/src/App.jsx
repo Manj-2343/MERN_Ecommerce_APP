@@ -15,7 +15,7 @@ import ShoppingAccount from "./pages/shopping-view/Account";
 import PaypalReturnPage from "./pages/shopping-view/Paypal-Return";
 import PaymentSuccessPage from "./pages/shopping-view/Payment-Success";
 import SearchProducts from "./pages/shopping-view/Search";
-import ShoppingLayout from "./components/shopping-view/Layout";
+// import ShoppingLayout from "./components/shopping-view/Layout";
 import NotFound from "./pages/not-found";
 import CheckAuth from "./components/common/Check-Auth";
 import UnauthPage from "./pages/unauth-page";
@@ -23,6 +23,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "./components/ui/skeleton";
 import Footer from "./components/footer/Footer";
+import ShoppingLayout from "./components/shopping-view/Layout";
 
 const App = () => {
   const { isAuthenticated, user, isLoading } = useSelector(
