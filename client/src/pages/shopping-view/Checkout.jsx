@@ -1,11 +1,11 @@
-import Address from "@/components/shopping-view/address";
+import Address from "@/components/shopping-view/Address";
 import img from "../../assets/account.jpg";
 import { useDispatch, useSelector } from "react-redux";
-import UserCartItemsContent from "@/components/shopping-view/cart-items-content";
+import UserCartItemsContent from "@/components/shopping-view/Cart-Items-Content";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { createNewOrder } from "@/store/shop/order-slice";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 
 function ShoppingCheckout() {
@@ -80,7 +80,6 @@ function ShoppingCheckout() {
     };
 
     dispatch(createNewOrder(orderData)).then((data) => {
-  
       if (data?.payload?.success) {
         setIsPaymemntStart(true);
       } else {

@@ -1,6 +1,6 @@
-import ProductFilter from "@/components/shopping-view/filter";
-import ProductDetailsDialog from "@/components/shopping-view/product-details";
-import ShoppingProductTile from "@/components/shopping-view/product-tile";
+import ProductFilter from "@/components/shopping-view/Filter";
+import ProductDetailsDialog from "@/components/shopping-view/Product-Details";
+import ShoppingProductTile from "@/components/shopping-view/Product-Tile";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,

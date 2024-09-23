@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CommonForm from "../common/form";
+import CommonForm from "../common/Form";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { addressFormControls } from "@/config";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import {
   editaAddress,
   fetchAllAddresses,
 } from "@/store/shop/address-slice";
-import AddressCard from "./address-card";
+import AddressCard from "./Address-Card";
 import { useToast } from "../ui/use-toast";
 
 const initialAddressFormData = {

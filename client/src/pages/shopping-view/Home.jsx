@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
-import bannerOne from "../../assets/banner-1.webp";
-import bannerTwo from "../../assets/banner-2.webp";
-import bannerThree from "../../assets/banner-3.webp";
+// import bannerOne from "../../assets/banner-1.webp";
+// import bannerTwo from "../../assets/banner-2.webp";
+// import bannerThree from "../../assets/banner-3.webp";
 import {
   Airplay,
   BabyIcon,
@@ -25,11 +25,11 @@ import {
   fetchAllFilteredProducts,
   fetchProductDetails,
 } from "@/store/shop/products-slice";
-import ShoppingProductTile from "@/components/shopping-view/product-tile";
+import ShoppingProductTile from "@/components/shopping-view/Product-Tile";
 import { useNavigate } from "react-router-dom";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import { useToast } from "@/components/ui/use-toast";
-import ProductDetailsDialog from "@/components/shopping-view/product-details";
+import ProductDetailsDialog from "@/components/shopping-view/Product-Details";
 import { getFeatureImages } from "@/store/common-slice";
 
 const categoriesWithIcon = [

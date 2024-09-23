@@ -1,4 +1,4 @@
-import CommonForm from "@/components/common/form";
+import CommonForm from "@/components/common/Form";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,

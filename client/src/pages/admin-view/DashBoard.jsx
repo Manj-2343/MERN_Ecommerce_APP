@@ -1,4 +1,4 @@
-import ProductImageUpload from "@/components/admin-view/image-upload";
+import ProductImageUpload from "@/components/admin-view/Image-Upload";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { addFeatureImage, getFeatureImages } from "@/store/common-slice";
