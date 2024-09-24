@@ -5,7 +5,7 @@ const initialState = {
   isAuthenticated: false,
   isLoading: true,
   user: null,
-  token: nill,
+  token: null,
 };
 // for register
 export const registerUser = createAsyncThunk(
