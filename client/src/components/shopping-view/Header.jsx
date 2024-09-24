@@ -24,7 +24,7 @@ import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
 import { motion } from "framer-motion";
 import NovelleEmporiumLogo from "./Logo";
-import UserCartWrapper from "./Cart-Wrapper";
+import UserCartWrapper from "./cart_wrapper";
 
 function MenuItems() {
   const navigate = useNavigate();
