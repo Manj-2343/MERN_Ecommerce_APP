@@ -1,6 +1,6 @@
 import React from "react";
-import ShoppingHeader from "./Header";
 import { Outlet } from "react-router-dom";
+import ShoppingHeader from "./Header";
 
 export default function ShoppingLayout() {
   return (

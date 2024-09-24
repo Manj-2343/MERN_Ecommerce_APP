@@ -1,10 +1,10 @@
-import ProductImageUpload from "@/components/admin-view/Image-Upload";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { addFeatureImage, getFeatureImages } from "@/store/common-slice";
 import { ImageIcon, PlusCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ProductImageUpload from "@/components/admin-view/Image-Upload";
 
 function AdminDashboard() {
   const [imageFile, setImageFile] = useState(null);

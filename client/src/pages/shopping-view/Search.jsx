@@ -1,5 +1,3 @@
-import ProductDetailsDialog from "@/components/shopping-view/Product-Details";
-import ShoppingProductTile from "@/components/shopping-view/Product-Tile";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
@@ -11,6 +9,9 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+
+import ProductDetailsDialog from "@/components/shopping-view/Product-Details";
+import ShoppingProductTile from "@/components/shopping-view/Product-Tile";
 
 function SearchProducts() {
   const [keyword, setKeyword] = useState("");

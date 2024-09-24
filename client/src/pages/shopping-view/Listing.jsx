@@ -1,6 +1,3 @@
-import ProductFilter from "@/components/shopping-view/Filter";
-import ProductDetailsDialog from "@/components/shopping-view/Product-Details";
-import ShoppingProductTile from "@/components/shopping-view/Product-Tile";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -16,11 +13,14 @@ import {
   fetchProductDetails,
 } from "@/store/shop/products-slice";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
-
 import { ArrowUpDownIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
+
+import ProductDetailsDialog from "@/components/shopping-view/Product-Details";
+import ShoppingProductTile from "@/components/shopping-view/Product-Tile";
+import ProductFilter from "@/components/shopping-view/Filter";
 
 function createSearchParamsHelper(filterParams) {
   const queryParams = [];

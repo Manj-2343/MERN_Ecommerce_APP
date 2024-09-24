@@ -1,8 +1,8 @@
 import { logoutUser } from "@/store/auth-slice";
-import React from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "../ui/button";
 import { AlignJustify, LogOut } from "lucide-react";
+import React from "react";
 
 export default function AdminHeader({ setOpen }) {
   const dispatch = useDispatch();

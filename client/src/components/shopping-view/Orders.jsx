@@ -10,7 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "../ui/table";
-import ShoppingOrderDetailsView from "./Order-Details";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   getAllOrdersByUserId,
@@ -18,6 +18,7 @@ import {
   resetOrderDetails,
 } from "@/store/shop/order-slice";
 import { Badge } from "../ui/badge";
+import ShoppingOrderDetailsView from "./Order-Details";
 
 function ShoppingOrders() {
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
